@@ -5,7 +5,7 @@ game.PlayScreen = me.ScreenObject.extend({
 	onResetEvent: function() {
 		// reset the score
 		game.data.score = 0;
-		//telling what to look at
+		//telling what to look at as far as maps
 		me.levelDirector.loadLevel("level01");
 
 		// add our HUD to the game world
