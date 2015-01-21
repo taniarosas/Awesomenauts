@@ -5,6 +5,8 @@ game.PlayScreen = me.ScreenObject.extend({
 	onResetEvent: function() {
 		// reset the score
 		game.data.score = 0;
+		//telling what to look at
+		me.levelDirector.loadLevel("level01");
 
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();
