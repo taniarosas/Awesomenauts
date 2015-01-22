@@ -20,17 +20,21 @@ game.PlayerEntity = me.Entity.extend({
 				return(new me.Rect(0, 0, 64, 64)).toPolygon();
 			}
 		}]);
-
+		//it sets the speed of the player when it moves to the right
 		this.body.setVelocity(5,0);
 	},
 	//updates the function
 	update: function(delta){
 		if(me.input.isKeyPressed("right")){
+			//sets the position of my x by adding the velocity defined above in setVelocity and multiplying it by me.timer.tick
+			//me.timer.tick makes the movement look smooth 
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
 		}
 		else {
+			//for when the righ arrow isnt clicked
 			this.body.vel.x = 0;
 		}
+		//updates the function to true
 		this.body.update(delta);
 		return true;
 
