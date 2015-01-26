@@ -21,6 +21,8 @@ game.PlayerEntity = me.Entity.extend({
 			}
 		}]);
 		//it sets the speed of the player when it moves to the right
+		//y location changes
+		//it moved down to the platform
 		this.body.setVelocity(5, 20);
 	},
 	//updates the function
