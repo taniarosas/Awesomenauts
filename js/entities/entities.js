@@ -24,11 +24,11 @@ game.PlayerEntity = me.Entity.extend({
 		//y location changes
 		//it moved down to the platform
 		this.body.setVelocity(5, 20);
-
+		//adds animation to standing starting position
 		this.renderable.addAnimation("idle", [78]);
-
+		//adds animation to walking 
 		this.renderable.addAnimation("walk", [117, 118 , 119, 120, 121, 122, 123, 124, 125], 80);
-
+		//adds animation to non-moving position 
 		this.renderable.setCurrentAnimation("idle");
 
 	},
@@ -38,6 +38,7 @@ game.PlayerEntity = me.Entity.extend({
 			//sets the position of my x by adding the velocity defined above in setVelocity and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement look smooth 
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			//makes the charcter face to right 
 			this.flipX(true);
 
 		}
@@ -46,17 +47,19 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.x = 0;
 		}
 
+		//if the button is pushed then it will walk but it not it will execute the else code
 		if(this.body.vel.x !==0 ){
 		if(!this.renderable.isCurrentAnimation("walk")){
 			this.renderable.setCurrentAnimation("walk");
 		}
 	}else{
+		//if not, make it stand still
 		this.renderable.setCurrentAnimation("idle");
 	}
 
 		//updates the function to true
 		this.body.update(delta);
-
+		//updates the animation
 		this._super(me.Entity, "update", [delta]);
 		return true;
 
