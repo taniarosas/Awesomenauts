@@ -8,7 +8,10 @@ game.resources = [
 	 {name: "background-tiles", type:"image", src: "data/img/background-tiles.png"},
 	 //added the meta tile images to load on the map.
 	 {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
+
 	 {name: "player", type:"image", src: "data/img/orcSpear.png"},
+	 
+	 {name: "tower", type:"image", src: "data/img/tower_round.svg.png"},
 	/* Atlases 
 	 * @example
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
