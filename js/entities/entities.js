@@ -69,23 +69,31 @@ game.PlayerEntity = me.Entity.extend({
 	game.PlayerBaseEntity = me.Entity.extend({
 		init : function(x, y, settings){
 			this._super(me.Entity, 'init', [x, y, {
+				//makes the image of the tower appear
 				image: "tower",
+				//the width of the space created
 				width: 100,
+				//the height of the space created
 				height: 100,
+				//width for the tower
 				spritewidth: "100",
+				//height for the tower
 				spriteheight: "100",
 				getShape: function(){
 					return(new me.Rect(0, 0, 100, 100)).toPolygon();
 				}
 
 			}]);
-
+			//variables
+			//tower has not been destroyed
 			this.broken = false;
 			this.health = 10;
+			//even if were not on the screen with the tower , it still updates
 			this.alwaysUpdate = true;
 			this.body.onCollision = this.onCollision.bind(this);
 			this.type = "PlayerBaseEntity";
 		},
+		//if the health is 0, the character dies
 		update:function(){
 			if(this.health<=0){
 				this.broken = true;
@@ -103,23 +111,31 @@ game.PlayerEntity = me.Entity.extend({
 	game.EnemyBaseEntity = me.Entity.extend({
 		init : function(x, y, settings){
 			this._super(me.Entity, 'init', [x, y, {
+				//makes the image of the tower appear
 				image: "tower",
+				//the width of the space created
 				width: 100,
+				//the height of the space created
 				height: 100,
+				//width for the tower
 				spritewidth: "100",
+				//height for the tower
 				spriteheight: "100",
 				getShape: function(){
 					return(new me.Rect(0, 0, 100, 100)).toPolygon();
 				}
 
 			}]);
-
+			//variables
+			//tower has not been destroyed
 			this.broken = false;
 			this.health = 10;
+			//even if were not on the screen with the tower , it still updates
 			this.alwaysUpdate = true;
 			this.body.onCollision = this.onCollision.bind(this);
 			this.type = "EnemyBaseEntity";
 		},
+		//if the health is 0, the character dies
 		update:function(){
 			if(this.health<=0){
 				this.broken = true;
