@@ -42,9 +42,9 @@ var game = {
 	"loaded" : function () {
 		//register player entity
 		me.pool.register("player", game.PlayerEntity, true);
-
+		//registers the playerbase
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
-
+		//registers the enemy base
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());

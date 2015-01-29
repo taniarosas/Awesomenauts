@@ -8,9 +8,9 @@ game.resources = [
 	 {name: "background-tiles", type:"image", src: "data/img/background-tiles.png"},
 	 //added the meta tile images to load on the map.
 	 {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
-
+	 //added the player image to load on the map
 	 {name: "player", type:"image", src: "data/img/orcSpear.png"},
-	 
+	 //added the tower image to load on the map
 	 {name: "tower", type:"image", src: "data/img/tower_round.svg.png"},
 	/* Atlases 
 	 * @example
