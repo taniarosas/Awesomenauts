@@ -13,7 +13,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.game.world.addChild(player, 5);
 		//moves the player to the right once the right arrow is pushed
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
-
+		me.input.bindKey(me.input.KEY.A, "attack");
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();
 		me.game.world.addChild(this.HUD);
