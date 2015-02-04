@@ -107,10 +107,13 @@ game.PlayerEntity = me.Entity.extend({
 		if(response.b.type==='EnemyBaseEntity'){
 			var ydif = this.pos.y - response.b.pos.y;
 			var xdif = this.pos.x - response.b.pos.x;
-
-			console.log("xdif " + xdif + " ydif " + ydif);
 			
-			if(xdif>-35 && this.facing==='right' && (xdif<0)){
+			if(ydif<-40 && xdif<70 && xdif>-35){
+				this.body.falling = false;
+				this.body.vel.y = -1
+			}
+
+			else if(xdif>-35 && this.facing==='right' && (xdif<0)){
 				this.body.vel.x = 0;
 				this.pos.x = this.pos.x -1;
 			}
