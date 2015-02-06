@@ -299,19 +299,27 @@ game.EnemyCreep = me.Entity.extend({
 });
 
 game.GameManager = Object.extend({
+	//initializes the function
 	init: function(x, y, settings){
+		//the time that we want to use
 		this.now = new Date().getTime();
+		//keep track of the last time we made a creep happen
 		this.lastCreep = new Date().getTime();
-
+		//makes sure it is always updating
 		this.alwaysUpdate = true;
 	},
-
+	//updates the function
 	update: function(){
+		//keep track of our timer
 		this.now = new Date().getTime();
+		//keeps track on whether we should be making creeps
+		//checks to see if we have a multiple of 10
 
 		if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
 			this.lastCreep = this.now;
+			//creates a creep
 			var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
+			//adds the creep to the world
 			me.game.world.addChild(creepe, 5);
 		}
 

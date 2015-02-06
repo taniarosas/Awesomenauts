@@ -47,8 +47,10 @@ var game = {
 		//registers the enemy base
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 		//registers the brain monster
+		//several of them
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
-
+		//registers the game manager
+		//only one of them
 		me.pool.register("GameManager", game.GameManager);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());
