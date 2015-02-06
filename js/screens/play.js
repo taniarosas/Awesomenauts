@@ -16,7 +16,9 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.game.world.addChild(gamemanager, 0);
 		//moves the player to the right once the right arrow is pushed
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
+		//moves the player to the left once the left arrow is pushed
 		me.input.bindKey(me.input.KEY.LEFT, "left");
+		//makes the player jump once the space button is pushed
 		me.input.bindKey(me.input.KEY.SPACE, "jump");
 		//makes the player attack the base once you press A in the keyboard
 		me.input.bindKey(me.input.KEY.A, "attack");

@@ -43,8 +43,10 @@ game.PlayerEntity = me.Entity.extend({
 
 	},
 	//updates the function
+	//whole set for just the x-axis
 	update: function(delta){
 		this.now = new Date().getTime();
+		//moves the player right
 		if(me.input.isKeyPressed("right")){
 			//sets the position of my x by adding the velocity defined above in setVelocity and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement look smooth 
@@ -55,6 +57,7 @@ game.PlayerEntity = me.Entity.extend({
 			this.flipX(true);
 
 		}
+		//moves the player left
 		else if(me.input.isKeyPressed("left")){
 				this.facing = "left";
 				this.body.vel.x -= this.body.accel.x * me.timer.tick;
@@ -64,7 +67,9 @@ game.PlayerEntity = me.Entity.extend({
 			//for when the righ arrow isnt clicked
 			this.body.vel.x = 0;
 		}
-
+		//set for the y-axis
+		//so the player can go right or left and still jump
+		//no double jumping
 		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling){
 			this.body.jumping = true;
 			this.body.vel.y -= this.body.accel.y * me.timer.tick;
@@ -145,6 +150,7 @@ game.PlayerEntity = me.Entity.extend({
 				//height for the tower
 				spriteheight: "100",
 				getShape: function(){
+					//the position of the enemy base
 					return(new me.Rect(0, 0, 100, 70)).toPolygon();
 				}
 
@@ -195,6 +201,7 @@ game.PlayerEntity = me.Entity.extend({
 				//height for the tower
 				spriteheight: "100",
 				getShape: function(){
+					//the position of the enemy base 
 					return(new me.Rect(0, 0, 100, 70)).toPolygon();
 				}
 
