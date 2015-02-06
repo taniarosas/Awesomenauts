@@ -26,9 +26,10 @@ game.PlayerEntity = me.Entity.extend({
 		this.body.setVelocity(5, 20);
 		//keeps track of which direction your character is going
 		this.facing = "right";
-	
+		//checks the time for the game
 		this.now = new Date().getTime();
 		this.lastHit = this.now;
+		//stop the player from hitting over and over again
 		this.lastAttack = new Date().getTime();
 		//
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -45,6 +46,7 @@ game.PlayerEntity = me.Entity.extend({
 	//updates the function
 	//whole set for just the x-axis
 	update: function(delta){
+		//keeps it up to date
 		this.now = new Date().getTime();
 		//moves the player right
 		if(me.input.isKeyPressed("right")){
@@ -138,8 +140,10 @@ game.PlayerEntity = me.Entity.extend({
 			}
 
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000){
+				//check when it is called
 				console.log("tower Hit");
 				this.lastHit = this.now;
+				//call the losehealth function
 				response.b.loseHealth();
 			}
 		}
@@ -248,6 +252,7 @@ game.PlayerEntity = me.Entity.extend({
 		},
 
 		loseHealth: function(){
+			//the player has to attack the tower 10 times before it breaks
 			this.health--;
 		}
 	});
