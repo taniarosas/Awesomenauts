@@ -152,6 +152,7 @@ game.PlayerEntity = me.Entity.extend({
 });
 
 	game.PlayerBaseEntity = me.Entity.extend({
+		//initializes the function
 		init : function(x, y, settings){
 			this._super(me.Entity, 'init', [x, y, {
 				//makes the image of the tower appear
@@ -164,6 +165,7 @@ game.PlayerEntity = me.Entity.extend({
 				spritewidth: "100",
 				//height for the tower
 				spriteheight: "100",
+				//function of the shape of the screen 
 				getShape: function(){
 					//the position of the enemy base
 					return(new me.Rect(0, 0, 100, 70)).toPolygon();
@@ -203,6 +205,7 @@ game.PlayerEntity = me.Entity.extend({
 
 
 	game.EnemyBaseEntity = me.Entity.extend({
+		//initializes the function
 		init : function(x, y, settings){
 			this._super(me.Entity, 'init', [x, y, {
 				//makes the image of the tower appear
@@ -215,6 +218,7 @@ game.PlayerEntity = me.Entity.extend({
 				spritewidth: "100",
 				//height for the tower
 				spriteheight: "100",
+				//function of the shape of the screen 
 				getShape: function(){
 					//the position of the enemy base 
 					return(new me.Rect(0, 0, 100, 70)).toPolygon();
@@ -258,23 +262,34 @@ game.PlayerEntity = me.Entity.extend({
 	});
 
 game.EnemyCreep = me.Entity.extend({
+	//initializes the function
 	init: function(x, y, settings){
 		this._super(me.Entity, 'init', [x, y, {
+			//makes the image of the brain monster appear
 			image: "creep1",
+			//the width of the space created
 			width: 32,
+			//the height of the space created
 			height: 64,
+			//width for the brain monster 
 			spritewidth: "32",
+			//height for the brain monster
 			spriteheight: "64",
+			//function of the shape of the screen 
 			getShape: function(){
+				//the posiiton of the brain monster
+				//0 , 0 is the origin
 				return(new me.Rect(0, 0, 32, 64)).toPolygon();	
 			}
 		}]);
 
 		this.health = 10;
+		//to always update
 		this.alwaysUpdate = true;
-
+		//a velocity to move him with
 		this.body.setVelocity(3, 20);
 		this.type = "EnemyCreep";
+		//animation for walking
 		this.renderable.addAnimation("walk", [3, 4, 5], 80);
 		this.renderable.setCurrentAnimation("walk");
 	},

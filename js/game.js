@@ -46,7 +46,7 @@ var game = {
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
 		//registers the enemy base
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
-
+		//registers the brain monster
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
 
 		me.pool.register("GameManager", game.GameManager);

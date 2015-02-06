@@ -12,6 +12,7 @@ game.resources = [
 	 {name: "player", type:"image", src: "data/img/orcSpear.png"},
 	 //added the tower image to load on the map
 	 {name: "tower", type:"image", src: "data/img/tower_round.svg.png"},
+	 //added the brain monster image to load on the map
 	 {name: "creep1", type:"image", src: "data/img/brainmonster.png"},
 	/* Atlases 
 	 * @example
