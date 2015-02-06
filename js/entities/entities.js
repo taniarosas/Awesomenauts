@@ -22,11 +22,11 @@ game.PlayerEntity = me.Entity.extend({
 		}]);
 		//it sets the speed of the player when it moves to the right
 		//y location changes
-		//it moved down to the platform
+		//it moved down to the player
 		this.body.setVelocity(5, 20);
-
+	
 		this.facing = "right";
-
+	
 		this.now = new Date().getTime();
 		this.lastHit = this.now;
 		this.lastAttack = new Date().getTime();
@@ -36,7 +36,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.renderable.addAnimation("idle", [78]);
 		//adds animation to walking 
 		this.renderable.addAnimation("walk", [117, 118 , 119, 120, 121, 122, 123, 124, 125], 80);
-
+		//animation for character attack
 		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80);
 		//adds animation to non-moving position 
 		this.renderable.setCurrentAnimation("idle");
@@ -74,7 +74,9 @@ game.PlayerEntity = me.Entity.extend({
 		if(me.input.isKeyPressed("attack")){
 			if(!this.renderable.isCurrentAnimation("attack")){
 				console.log(!this.renderable.isCurrentAnimation("attack"));
+				//sets the current animation to attck and once that is over goes back to idle animation 
 				this.renderable.setCurrentAnimation("attack", "idle");
+				//makes it so that the next time we start this sequence we begin from the first animation not whenever we left off when we switched to another animation
 				this.renderable.setAnimationFrame();
 			}
 		}
