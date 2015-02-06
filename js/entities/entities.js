@@ -24,7 +24,7 @@ game.PlayerEntity = me.Entity.extend({
 		//y location changes
 		//it moved down to the player
 		this.body.setVelocity(5, 20);
-	
+		//keeps track of which direction your character is going
 		this.facing = "right";
 	
 		this.now = new Date().getTime();
@@ -51,7 +51,7 @@ game.PlayerEntity = me.Entity.extend({
 			//sets the position of my x by adding the velocity defined above in setVelocity and multiplying it by me.timer.tick
 			//me.timer.tick makes the movement look smooth 
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
-
+			//keeps track of which direction your character is going
 			this.facing = "right";
 			//makes the charcter face to right 
 			this.flipX(true);
@@ -59,6 +59,7 @@ game.PlayerEntity = me.Entity.extend({
 		}
 		//moves the player left
 		else if(me.input.isKeyPressed("left")){
+				//keeps track of which direction your character is going
 				this.facing = "left";
 				this.body.vel.x -= this.body.accel.x * me.timer.tick;
 				this.flipX(false);
@@ -96,7 +97,7 @@ game.PlayerEntity = me.Entity.extend({
 		//if not, make it stand still
 		this.renderable.setCurrentAnimation("idle");
 	}
-
+		//checks for collisions 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 
 		//updates the function to true
@@ -106,9 +107,12 @@ game.PlayerEntity = me.Entity.extend({
 		return true;
 
 	},
-
+	//new function that is passing the parameter response 
+	//holds info about collision
 	collideHandler: function(response){
 		if(response.b.type==='EnemyBaseEntity'){
+			//the y difference between the players y position and the base y position
+			//keep track of the position of both objects 
 			var ydif = this.pos.y - response.b.pos.y;
 			var xdif = this.pos.x - response.b.pos.x;
 			
@@ -116,13 +120,20 @@ game.PlayerEntity = me.Entity.extend({
 				this.body.falling = false;
 				this.body.vel.y = -1
 			}
-
+			//stops the player on the left side of the tower 
+			//prevent from over lapping
 			else if(xdif>-35 && this.facing==='right' && (xdif<0)){
+				//stop the player from moving
 				this.body.vel.x = 0;
+				//move player backwards 
 				this.pos.x = this.pos.x -1;
 			}
+			//stops the player on the right side of the tower
+			//prevent from over lapping
 			else if(xdif<70 && this.facing==='left' && xdif>0){
+				//stop the player from moving
 				this.body.vel.x = 0;
+				//moves player forward
 				this.pos.x = this.pos.x +1;
 			}
 
