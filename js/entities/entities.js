@@ -115,7 +115,7 @@ game.PlayerEntity = me.Entity.extend({
 			//keep track of the position of both objects 
 			var ydif = this.pos.y - response.b.pos.y;
 			var xdif = this.pos.x - response.b.pos.x;
-			
+			//makes the player jump on top of the tower
 			if(ydif<-40 && xdif<70 && xdif>-35){
 				this.body.falling = false;
 				this.body.vel.y = -1
