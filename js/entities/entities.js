@@ -67,7 +67,7 @@ game.PlayerEntity = me.Entity.extend({
 				this.flipX(false);
 		}
 			else {
-			//for when the righ arrow isnt clicked
+			//for when the right arrow isnt clicked
 			this.body.vel.x = 0;
 		}
 		//set for the y-axis
@@ -317,9 +317,9 @@ game.GameManager = Object.extend({
 
 		if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
 			this.lastCreep = this.now;
-			//creates a creep
 			var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
-			//adds the creep to the world
+			//creates a creep
+ 			//adds the creep to the world
 			me.game.world.addChild(creepe, 5);
 		}
 
