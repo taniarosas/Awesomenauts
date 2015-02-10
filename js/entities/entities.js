@@ -293,9 +293,15 @@ game.EnemyCreep = me.Entity.extend({
 		this.renderable.addAnimation("walk", [3, 4, 5], 80);
 		this.renderable.setCurrentAnimation("walk");
 	},
+	//delta variable that represents time as a parameter for update function
 	update: function(delta){
+		//moves the creep to the left
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
+		//main update calls
+		//sets the creep to do whatever we want it to do
+		//and is actually updating
 		this.body.update(delta);
+		//call to super class
 		this._super(me.Entity, "update", [delta]);
 		return true;
 	}
