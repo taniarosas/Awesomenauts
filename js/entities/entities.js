@@ -198,8 +198,10 @@ game.PlayerEntity = me.Entity.extend({
 			this._super(me.Entity, "update", [delta]);
 			return true;
 		},
-
+		//losehealth function
+		//call damage
 		loseHealth: function(damage){
+			//makes base lose a lil bit of health everytime it gets attacked
 			this.health = this.health - damage;
 		},
 
@@ -291,13 +293,13 @@ game.EnemyCreep = me.Entity.extend({
 		this.health = 10;
 		//to always update
 		this.alwaysUpdate = true;
-
+		//this.attacking lets us know if the enemy is currently attacking
 		this.attacking = false;
-
+		//keeps track of when our creep last attacked anything
 		this.lastAttacking = new Date().getTime();
-
+		//keep track of the last time our creep hit anything
 		this.lastHit = new Date().getTime();
-
+		//time we are going to use when we are attacking our playerbase
 		this.now = new Date().getTime();
 
 		//a velocity to move him with
@@ -309,11 +311,12 @@ game.EnemyCreep = me.Entity.extend({
 	},
 	//delta variable that represents time as a parameter for update function
 	update: function(delta){
-
+		// it is going t refresh every single time
 		this.now = new Date().getTime();
 		//moves the creep to the left
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
-
+		//handler for collisions
+		//to check for collisions with our player
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 
 		//main update calls
@@ -324,15 +327,20 @@ game.EnemyCreep = me.Entity.extend({
 		this._super(me.Entity, "update", [delta]);
 		return true;
 	},
-
+	//a parameter with response
 	collideHandler: function(response){
 		if(response.b.type==='PlayerBase'){
 			this.attacking=true;
 			//this.lastAttacking=this.now;
 			this.body.vel.x = 0;
+			//keeps moving the creep to the right to maintain its position
 			this.pos.x = this.pos.x +1;
+			//checks that it has been at least 1 second since this creep hit a base
 			if((this.now-this.lastHit >=1000)){
+				//updates the lastHit timer
 				this.lastHit = this.now;
+				//makes the player base call its loseHealth function and passes it a
+				//damage of 1
 				response.b.loseHealth(1);
 			}
 		}
