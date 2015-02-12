@@ -20,8 +20,9 @@ game.PlayerEntity = me.Entity.extend({
 				return(new me.Rect(0, 0, 64, 64)).toPolygon();
 			}
 		}]);
-
+		//to call player entity
 		this.type = "PlayerEntity";
+		//the life of our player
 		this.health = 20;
 		//it sets the speed of the player when it moves to the right
 		//y location changes
@@ -112,13 +113,12 @@ game.PlayerEntity = me.Entity.extend({
 		return true;
 
 	},
-
+	//function that is passing the damage parameter
 	loseHealth: function(damage){
 		this.health = this.health - damage;
+		//print out what the haelth is of the player
 		console.log(this.health);
 	},
-
-
 	//new function that is passing the parameter response 
 	//holds info about collision
 	collideHandler: function(response){
@@ -355,21 +355,24 @@ game.EnemyCreep = me.Entity.extend({
 			}
 		}	
 		else if (response.b.type==='PlayerEntity'){
+			//get the position of the creep and take away the position of the player
+			//check the difference of the two of them
 			var xdif = this.pos.x - response.b.pos.x;
 			this.attacking=true;
-			
+			//this.lastAttacking=this.now;
 			this.body.vel.x = 0;
 			if(xdif>0){
-				
+				//keeps moving the creep to the right to maintain its position
 				this.pos.x = this.pos.x +1;
-				
+				//this.lastAttacking=this.now;
 				this.body.vel.x = 0;
 			}
-			
+			//checks that it has been at least 1 second since this creep hit something
 			if((this.now-this.lastHit >=1000) && xdif>0){
-				
+				//updates the lastHit timer
 				this.lastHit = this.now;
-			
+				//makes the player call its loseHealth function and passes it a
+				//damage of 1
 				response.b.loseHealth(1);
 			}
 		}
