@@ -159,19 +159,28 @@ game.PlayerEntity = me.Entity.extend({
 				response.b.loseHealth();
 			}
 		}
+		//if the player collides with the enemy creep, this code will execute
 		else if(response.b.type ==='EnemyCreep'){
+			//the y difference between the players y position and the creep y position
+			//keep track of the position of both objects 
 			var xdif = this.pos.x - response.b.pos.x;
 			var ydif = this.pos.y - response.b.pos.y;
 
 			if (xdif>0){
+				//moves it to the right
 				this.pos.x = this.pos.x +1;
+				//when the player and creep are facing each other, the player can attack
 				if(this.facing==="left"){
+					//sets the velocity to 0
 					this.body.vel.x = 0;
 				}
 			}
 			else{
+				//moves it to the left
 				this.pos.x = this.pos.x -1;
+				//when the player and creep are facing each other, the player can attack
 				if(this.facing==="right"){
+					//sets the velocity to 0
 					this.body.vel.x = 0;
 				}
 			}
@@ -181,6 +190,7 @@ game.PlayerEntity = me.Entity.extend({
 					(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
 					){
 				this.lastHit = this.now;
+				//calls the loseHealth function from the creep
 				response.b.loseHealth(1);
 			}
 		}
@@ -346,15 +356,19 @@ game.EnemyCreep = me.Entity.extend({
 		this.renderable.addAnimation("walk", [3, 4, 5], 80);
 		this.renderable.setCurrentAnimation("walk");
 	},
-
+	//losehealth function
+	//calls damage parameter
 	loseHealth: function(damage){
+		//makes base lose a lil bit of health everytime it gets attacked
 		this.health = this.health - damage;
 	},
 
 	//delta variable that represents time as a parameter for update function
 	update: function(delta){
-		console.log(this.health);
+		//console.log(this.health);
+		//if the health is 0
 		if(this.health <= 0){
+			//it removes the creep 
 			me.game.world.removeChild(this);
 		}
 
