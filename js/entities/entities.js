@@ -161,7 +161,7 @@ game.PlayerEntity = me.Entity.extend({
 		}
 		else if(response.b.type ==='EnemyCreep'){
 			var xdif = this.pos.x - response.b.pos.x;
-			var xdif = this.pos.y - response.b.pos.y;
+			var ydif = this.pos.y - response.b.pos.y;
 
 			if (xdif>0){
 				this.pos.x = this.pos.x +1;
@@ -176,9 +176,9 @@ game.PlayerEntity = me.Entity.extend({
 				}
 			}
 
-			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000
+			if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= 1000
 					&& (Math.abs(ydif) <=40) && 
-					((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right")
+					(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
 					){
 				this.lastHit = this.now;
 				response.b.loseHealth(1);
@@ -327,7 +327,7 @@ game.EnemyCreep = me.Entity.extend({
 			}
 		}]);
 
-		this.health = 10;
+		this.health = 5;
 		//to always update
 		this.alwaysUpdate = true;
 		//this.attacking lets us know if the enemy is currently attacking
