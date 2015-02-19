@@ -158,7 +158,7 @@ game.PlayerEntity = me.Entity.extend({
 				this.pos.x = this.pos.x +1;
 			}
 
-			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.player.AttackTimer){
+			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer){
 				//check when it is called
 				console.log("tower Hit");
 				this.lastHit = this.now;
@@ -409,7 +409,7 @@ game.EnemyCreep = me.Entity.extend({
 				this.lastHit = this.now;
 				//makes the player base call its loseHealth function and passes it a
 				//damage of 1
-				response.b.loseHealth(game.data.EnemyCreepAttack);
+				response.b.loseHealth(game.data.enemyCreepAttack);
 			}
 		}	
 		else if (response.b.type==='PlayerEntity'){
