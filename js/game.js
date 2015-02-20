@@ -6,6 +6,7 @@ var game = {
 	data : {
 		// score
 		score : 0,
+		//made the following global varibales
 		EnemyBaseHealth: 10,
 		playerBaseHealth: 10,
 		enemyCreepHealth: 10,
