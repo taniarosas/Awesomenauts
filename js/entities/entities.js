@@ -456,7 +456,9 @@ game.GameManager = Object.extend({
 	update: function(){
 		//keep track of our timer
 		this.now = new Date().getTime();
-
+		//checks if our player is dead
+		//we are asking if he is dead 
+		//if so we will execute some stuff
 		if(game.data.player.dead){
 			me.game.world.removeChild(game.data.player);
 			me.state.current().resetPlayer(10, 0);

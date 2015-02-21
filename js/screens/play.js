@@ -7,6 +7,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		game.data.score = 0;
 		//telling what to look at as far as maps
 		me.levelDirector.loadLevel("level01");
+		//we are going to use 0 & 420 to pass our parameters
 		this.resetPlayer(0, 420);
 		//it is not going to be visible
 		var gamemanager = me.pool.pull("GameManager", 0, 0, {});
@@ -34,10 +35,13 @@ game.PlayScreen = me.ScreenObject.extend({
 		// remove the HUD from the game world
 		me.game.world.removeChild(this.HUD);
 	},
-
+	//saving our player in a global variable
+	//remove our player and reset him on the field
+	//takes the parameters x and y which it tells us where to put the player on the screen
 	resetPlayer: function(x, y){
-
+		//set a value to the variable player
 		game.data.player = me.pool.pull("player", x, y, {});
+		//its sets the hieght of where they player appears  on the screen
 		me.game.world.addChild(game.data.player, 5);
 	}
 });
