@@ -21,7 +21,7 @@ var game = {
 		playerMoveSpeed: 5,
 		creepMoveSpeed: 5,
 		gameManager: "",
-		player: "",
+		player: ""
 	},
 	
 	
@@ -58,6 +58,8 @@ var game = {
 	"loaded" : function () {
 		//register player entity
 		me.pool.register("player", game.PlayerEntity, true);
+		//registered the 2nd player 
+		me.pool.register("Player2", game.Player2, true);
 		//registers the playerbase
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
 		//registers the enemy base
