@@ -16,6 +16,7 @@ game.resources = [
 	 {name: "creep1", type:"image", src: "data/img/brainmonster.png"},
 	 //added the second character to load on map
 	 {name: "Player2", type:"image", src: "data/img/gloop.png"},
+	 //added the title image to load on the map
 	 {name: "title-screen", type:"image", src: "data/img/title.png"},
 	/* Atlases 
 	 * @example
