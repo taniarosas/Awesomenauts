@@ -486,6 +486,10 @@ game.GameManager = Object.extend({
 			//creates a creep
  			//adds the creep to the world
 			me.game.world.addChild(creepe, 5);
+			var creepe2 = me.pool.pull("Player2", 200, 0, {});
+			//creates a creep
+ 			//adds the creep to the world
+			me.game.world.addChild(creepe2, 5);
 		}
 
 		return true;
