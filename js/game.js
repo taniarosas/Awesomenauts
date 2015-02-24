@@ -22,11 +22,11 @@ var game = {
 		creepMoveSpeed: 5,
 		gameManager: "",
 		player: "",
-		
+		//number of experience points the character has currently acquired from wining or losing games
 		exp: 0,
-		
+		//acquired during each game that they can use to buy power ups that will disappear
 		gold: 0,
-		
+		//keep track of how they have spent their experience
 		exp1: 0,
 		exp2: 0,
 		exp3: 0,

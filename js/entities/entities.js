@@ -200,11 +200,11 @@ game.PlayerEntity = me.Entity.extend({
 					(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
 					){
 				this.lastHit = this.now;
-				
+				//if the creeps health is less than our attack, execute code in if statement
 				if(response.b.health <= game.data.playerAttack){
-					
+					//adds one gold for a creep kill
 					game.data.gold += 1;
-					
+					//keeps track of our gold
 					console.log("Current gold: " + game.data.gold);
 				}
 				//calls the loseHealth function from the creep
@@ -473,9 +473,9 @@ game.GameManager = Object.extend({
 			me.state.current().resetPlayer(10, 0);
 		}
 		if(Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)){
-			
+			//adds one gold for a creep kill
 			game.data.gold +=1;
-			
+			//keeps track of our gold
 			console.log("Current gold: " + game.data.gold);
 		}
 		//keeps track on whether we should be making creeps
