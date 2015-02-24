@@ -36,6 +36,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.lastHit = this.now;
 		//states the player is alive 
 		this.dead = false;
+		this.attack = game.data.playerAttack;
 		//stop the player from hitting over and over again
 		this.lastAttack = new Date().getTime();
 		//
@@ -199,6 +200,13 @@ game.PlayerEntity = me.Entity.extend({
 					(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
 					){
 				this.lastHit = this.now;
+				
+				if(response.b.health <= game.data.playerAttack){
+					
+					game.data.gold += 1;
+					
+					console.log("Current gold: " + game.data.gold);
+				}
 				//calls the loseHealth function from the creep
 				response.b.loseHealth(game.data.playerAttack);
 			}
@@ -375,7 +383,7 @@ game.EnemyCreep = me.Entity.extend({
 
 	//delta variable that represents time as a parameter for update function
 	update: function(delta){
-		console.log(this.health);
+		//console.log(this.health);
 		//if the health is 0
 		if(this.health <= 0){
 			//it removes the creep 
@@ -449,6 +457,7 @@ game.GameManager = Object.extend({
 		this.now = new Date().getTime();
 		//keep track of the last time we made a creep happen
 		this.lastCreep = new Date().getTime();
+		this.paused = false;
 		//makes sure it is always updating
 		this.alwaysUpdate = true;
 	},
@@ -463,10 +472,14 @@ game.GameManager = Object.extend({
 			me.game.world.removeChild(game.data.player);
 			me.state.current().resetPlayer(10, 0);
 		}
-
+		if(Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)){
+			
+			game.data.gold +=1;
+			
+			console.log("Current gold: " + game.data.gold);
+		}
 		//keeps track on whether we should be making creeps
 		//checks to see if we have a multiple of 10
-
 		if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
 			this.lastCreep = this.now;
 			var creepe = me.pool.pull("EnemyCreep", 1000, 0, {});
