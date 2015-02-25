@@ -55,6 +55,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.facing = "right";
 		//states the player is alive 
 		this.dead = false;
+		this.attacking = false;
 	},
 	addAnimation: function(){
 		//adds animation to standing starting position
@@ -71,28 +72,9 @@ game.PlayerEntity = me.Entity.extend({
 		this.now = new Date().getTime();
 		this.dead = checkIfDead();
 		this.checkKeyPressesAndMove();
-		if(me.input.isKeyPressed("attack")){
-			if(!this.renderable.isCurrentAnimation("attack")){
-				console.log(!this.renderable.isCurrentAnimation("attack"));
-				//sets the current animation to attck and once that is over goes back to idle animation 
-				this.renderable.setCurrentAnimation("attack", "idle");
-				//makes it so that the next time we start this sequence we begin from the first animation not whenever we left off when we switched to another animation
-				this.renderable.setAnimationFrame();
-			}
-		}
-
-		//if the button is pushed then it will walk but it not it will execute the else code
-		else if(this.body.vel.x !==0 && !this.renderable.isCurrentAnimation("attack")){
-		if(!this.renderable.isCurrentAnimation("walk")){
-			this.renderable.setCurrentAnimation("walk");
-		}
-	}else if(!this.renderable.isCurrentAnimation("attack")){
-		//if not, make it stand still
-		this.renderable.setCurrentAnimation("idle");
-	}
+		this.setAnimation();
 		//checks for collisions 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
-
 		//updates the function to true
 		this.body.update(delta);
 		//updates the animation
@@ -127,6 +109,7 @@ game.PlayerEntity = me.Entity.extend({
 		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling){
 			this.jump();
 		}
+		this.attacking = me.input.isKeyPressed("attack");
 	},
 	moveRight: function(){
 			//sets the position of my x by adding the velocity defined above in setVelocity and multiplying it by me.timer.tick
@@ -149,6 +132,26 @@ game.PlayerEntity = me.Entity.extend({
 			//makes sound when the player jumps
 			me.audio.play("jump");
 		},
+	setAnimation: function(){
+		if(this.attacking){
+			if(!this.renderable.isCurrentAnimation("attack")){
+				console.log(!this.renderable.isCurrentAnimation("attack"));
+				//sets the current animation to attck and once that is over goes back to idle animation 
+				this.renderable.setCurrentAnimation("attack", "idle");
+				//makes it so that the next time we start this sequence we begin from the first animation not whenever we left off when we switched to another animation
+				this.renderable.setAnimationFrame();
+			}
+		}
+		//if the button is pushed then it will walk but it not it will execute the else code
+		else if(this.body.vel.x !==0 && !this.renderable.isCurrentAnimation("attack")){
+		if(!this.renderable.isCurrentAnimation("walk")){
+			this.renderable.setCurrentAnimation("walk");
+		}
+	}else if(!this.renderable.isCurrentAnimation("attack")){
+		//if not, make it stand still
+		this.renderable.setCurrentAnimation("idle");
+	}
+},
 	//function that is passing the damage parameter
 	loseHealth: function(damage){
 		this.health = this.health - damage;
