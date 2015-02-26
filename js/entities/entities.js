@@ -2,7 +2,7 @@
 game.PlayerEntity = me.Entity.extend({
 	//initializes the function 
 	init: function(x, y, settings){
-		this.setSuper();
+		this.setSuper(x, y);
 		this.setPlayerTimers();
 		this.setAttributes();
 		this.setFlags();
@@ -13,7 +13,7 @@ game.PlayerEntity = me.Entity.extend({
 		//adds animation to non-moving position 
 		this.renderable.setCurrentAnimation("idle");
 	},
-	setSuper: function(){
+	setSuper: function(x, y){
 		this._super(me.Entity, 'init', [x, y, {
 			//makes the image of the player appear
 			image: "player",
@@ -70,7 +70,7 @@ game.PlayerEntity = me.Entity.extend({
 	update: function(delta){
 		//keeps it up to date
 		this.now = new Date().getTime();
-		this.dead = checkIfDead();
+		this.dead = this.checkIfDead();
 		this.checkKeyPressesAndMove();
 		this.setAnimation();
 		//checks for collisions 
@@ -86,7 +86,7 @@ game.PlayerEntity = me.Entity.extend({
 		//makes the creep kill the character
 		if (this.health <= 0){
 			//if player is 0 the player dies
-			return = true;
+			return true;
 		}
 		return false;
 	},
