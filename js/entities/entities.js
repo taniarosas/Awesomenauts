@@ -162,6 +162,14 @@ game.PlayerEntity = me.Entity.extend({
 	//holds info about collision
 	collideHandler: function(response){
 		if(response.b.type==='EnemyBaseEntity'){
+			this.collideWithEnemyBase(response);
+		}
+		//if the player collides with the enemy creep, this code will execute
+		else if(response.b.type ==='EnemyCreep'){
+			this.collideWithEnemyCreep(response);
+		}
+	},
+	collideWithEnemyBase: function(response){
 			//the y difference between the players y position and the base y position
 			//keep track of the position of both objects 
 			var ydif = this.pos.y - response.b.pos.y;
@@ -176,16 +184,12 @@ game.PlayerEntity = me.Entity.extend({
 			else if(xdif>-35 && this.facing==='right' && (xdif<0)){
 				//stop the player from moving
 				this.body.vel.x = 0;
-				//move player backwards 
-				//this.pos.x = this.pos.x -1;
 			}
 			//stops the player on the right side of the tower
 			//prevent from over lapping
 			else if(xdif<70 && this.facing==='left' && xdif>0){
 				//stop the player from moving
 				this.body.vel.x = 0;
-				//moves player forward
-				//this.pos.x = this.pos.x +1;
 			}
 			//added the gloabl variable playerAttackTimer
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer){
@@ -195,17 +199,19 @@ game.PlayerEntity = me.Entity.extend({
 				//call the losehealth function
 				response.b.loseHealth(game.data.playerAttack);
 			}
-		}
-		//if the player collides with the enemy creep, this code will execute
-		else if(response.b.type ==='EnemyCreep'){
+	},
+	collideWithEnemyCreep: function(response){
 			//the y difference between the players y position and the creep y position
 			//keep track of the position of both objects 
 			var xdif = this.pos.x - response.b.pos.x;
 			var ydif = this.pos.y - response.b.pos.y;
-
-			if (xdif>0){
-				//moves it to the right
-				//this.pos.x = this.pos.x +1;
+			this.stopMovement(xdif);
+			if(this.checkAttack(xdif, ydif)){
+				this.hitCreep(response);
+			};
+	},
+	stopMovement: function(xdif){
+		if (xdif>0){
 				//when the player and creep are facing each other, the player can attack
 				if(this.facing==="left"){
 					//sets the velocity to 0
@@ -213,21 +219,26 @@ game.PlayerEntity = me.Entity.extend({
 				}
 			}
 			else{
-				//moves it to the left
-				//this.pos.x = this.pos.x -1;
 				//when the player and creep are facing each other, the player can attack
 				if(this.facing==="right"){
 					//sets the velocity to 0
 					this.body.vel.x = 0;
 				}
 			}
-			//added the global vaiable playerAttackTimer
+	},
+	checkAttack: function(xdif, ydif){
+		//added the global vaiable playerAttackTimer
 			if(this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= game.data.playerAttackTimer
 					&& (Math.abs(ydif) <=40) && 
 					(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
 					){
 				this.lastHit = this.now;
-				//if the creeps health is less than our attack, execute code in if statement
+				return true;
+			}
+			return false;
+	}, 
+	hitCreep: function(){
+		//if the creeps health is less than our attack, execute code in if statement
 				if(response.b.health <= game.data.playerAttack){
 					//adds one gold for a creep kill
 					game.data.gold += 1;
@@ -237,11 +248,7 @@ game.PlayerEntity = me.Entity.extend({
 				//calls the loseHealth function from the creep
 				response.b.loseHealth(game.data.playerAttack);
 			}
-		}
-	}
-
 });
-
 game.Player2 = me.Entity.extend({
 // sets properties of enemy player 
 	init: function(x, y, settings){
@@ -255,54 +262,38 @@ game.Player2 = me.Entity.extend({
 				return(new me.Rect(0, 0 ,100, 85)).toPolygon();
 			}
 		}]);
-
 		// sets health of player starting at 10
 		this.health = game.data.playerHealth; 
 		// always keeps the enemy player updated
 		this.alwaysUpdate = true;
-
 		// this.attacking lets us know if thge enemy is currently attacking
 		this.attacking = false;
-
 		// keeps track of when our creep last attacked anything
 		this.lastAttacking = new Date().getTime();
-
 		// keeps track of the ;ast time our creep hit anything
 		this.lastHit = new Date().getTime();
-
 		// timer
 		this.now = new Date().getTime();
-
 		// sets were player is located 
 		this.body.setVelocity(3, 20);
-
 		// sets type of player
 		this.type = "Player2";
-
 		// sets the animation of enemy player 
 		this.renderable.addAnimation("walk", [0, 1, 2, 3, 4], 80);
 		this.renderable.setCurrentAnimation("walk");
 	},
-
 	update: function(delta){
 		// Timer set to check collisons refreshes every single time
 		this.now = new Date().getTime();
-
 		// makes creeps move 
 		this.body.vel.x += this.body.accel.x * me.timer.tick;
 		this.flipX(true);
-		
 		// checks of creep is colliding with player
 		// me.collison.check(this, true, this.collideHandler.bind(this), true);
-
 		this.body.update(delta);
-
 		this._super(me.Entity, "update", [delta]);
-
 		return true;
-
 	},
-
 	collideHandler: function(response){
 		if (response.b.type === 'EnemyBaseEntity') {
 			this.attacking = true;
@@ -320,11 +311,8 @@ game.Player2 = me.Entity.extend({
 		}
 		else if (response.b.type === 'EnemyCreep') {
 			var xdif = this.pos.x - response.b.pos.x;
-
 			this.attacking = true;
-
 			// this.lastAttacking = this.now;
-
 			if (xdif>0) {
 			// Kepps moving the creep to the right to maintain its position
 				this.pos.x = this.pos.x + 1;
@@ -339,6 +327,4 @@ game.Player2 = me.Entity.extend({
 			}
 		}
 	}
-	
-
 });
