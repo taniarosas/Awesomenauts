@@ -10,8 +10,11 @@ game.PlayScreen = me.ScreenObject.extend({
 		//we are going to use 0 & 420 to pass our parameters
 		this.resetPlayer(0, 420);
 		//it is not going to be visible
-		var gamemanager = me.pool.pull("GameManager", 0, 0, {});
-		me.game.world.addChild(gamemanager, 0);
+		var gameTimerManager = me.pool.pull("GameTimerManager", 0, 0, {});
+		me.game.world.addChild(gameTimerManager, 0);
+		//it is not going to be visible
+		var heroDeathManager = me.pool.pull("HeroDeathManager", 0, 0, {});
+		me.game.world.addChild(heroDeathManager, 0);
 		//moves the player to the right once the right arrow is pushed
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		//moves the player to the left once the left arrow is pushed

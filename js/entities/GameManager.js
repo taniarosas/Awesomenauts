@@ -1,4 +1,4 @@
-game.GameManager = Object.extend({
+game.GameTimerManager = Object.extend({
 	//initializes the function
 	init: function(x, y, settings){
 		//the time that we want to use
@@ -8,24 +8,26 @@ game.GameManager = Object.extend({
 		this.paused = false;
 		//makes sure it is always updating
 		this.alwaysUpdate = true;
+
 	},
 	//updates the function
 	update: function(){
 		//keep track of our timer
 		this.now = new Date().getTime();
-		//checks if our player is dead
-		//we are asking if he is dead 
-		//if so we will execute some stuff
-		if(game.data.player.dead){
-			me.game.world.removeChild(game.data.player);
-			me.state.current().resetPlayer(10, 0);
-		}
+		this.goldTimerCheck();
+		this.creepTimerCheck();
+		
+		return true;
+	},
+	goldTimerCheck: function(){
 		if(Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)){
 			//adds one gold for a creep kill
 			game.data.gold +=1;
 			//keeps track of our gold
 			console.log("Current gold: " + game.data.gold);
 		}
+	},
+	creepTimerCheck: function(){
 		//keeps track on whether we should be making creeps
 		//checks to see if we have a multiple of 10
 		if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)){
@@ -39,7 +41,20 @@ game.GameManager = Object.extend({
  			//adds the creep to the world
 			me.game.world.addChild(creepe2, 5);
 		}
-
-		return true;
+	}
+});
+game.HeroDeathManager = Object.extend({
+	init: function(x, y, settings){
+		//makes sure it is always updating
+		this.alwaysUpdate = true;
+	},
+	update: function(){
+		//checks if our player is dead
+		//we are asking if he is dead 
+		//if so we will execute some stuff
+		if(game.data.player.dead){
+			me.game.world.removeChild(game.data.player);
+			me.state.current().resetPlayer(10, 0);
+		}
 	}
 });
