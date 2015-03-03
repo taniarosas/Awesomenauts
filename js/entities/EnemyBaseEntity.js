@@ -39,6 +39,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 		update:function(delta){
 			if(this.health<=0){
 				this.broken = true;
+				//if the other base breaks first you win
 				game.data.win = true;
 				//when the player dies the tower is set on fire
 				this.renderable.setCurrentAnimation("broken");

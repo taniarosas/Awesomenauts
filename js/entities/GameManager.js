@@ -56,24 +56,34 @@ game.HeroDeathManager = Object.extend({
 			me.game.world.removeChild(game.data.player);
 			me.state.current().resetPlayer(10, 0);
 		}
+		//makes the code run 
 		return true;
 	}
 });
 game.ExperienceManager = Object.extend({
 	init: function(x, y, settings){
+		//makes sure it is always updating
 		this.alwaysUpdate = true;
+		//sets gameover to false
 		this.gameOver = false;
 	},
 	update: function(){
+		//if you win the game is not over
 		if(game.data.win === true && !this.gameOver){
+			//adds ten points to the experience variable
 			game.data.exp += 10;
+			//makes the game be over
 			this.gameOver = true;
 		}
 		else if(game.data.win === false && !this.gameOver){
+			//adds 1 point to the experience variable
 			game.data.exp += 1;
+			//makes the game be over
 			this.gameOver = true;
 		}
+		//makes it appear in our console log
 		console.log(game.data.exp);
+		//makes the code run
 		return true;
 	}
 });
