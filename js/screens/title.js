@@ -49,8 +49,40 @@ game.TitleScreen = me.ScreenObject.extend({
 				me.state.change(me.state.PLAY);
 			}
 		})));
+
+
+		//add some text
+		me.game.world.addChild(new (me.Renderable.extend({
+			//initialize function 
+			init: function(){
+				//make a call to our super class
+				//passing a renderable and basic info
+				//changed x, y , width and height
+				this._super(me.Renderable, 'init', [380, 340, 250, 50]);
+				//initialization of text
+				this.font = new me.Font("Arial", 46, "white");
+				//register the pointer to start a new game
+				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true);
+			},
+			//draw whats on the screen 
+			//passing whatever our renderer is as its parameter
+			draw: function(renderer){
+				//coordinates of where we draw
+				//changed the position of start new game
+				this.font.draw(renderer.getContext(), "CONTINUE", this.pos.x, this.pos.y);
+			},
+			//listens for the mouse
+			update: function(dt){
+				return true;
+			},
+			//function to start the new game
+			newGame: function(){
+				//calls the pointerdown registered input
+				me.input.releasePointerEvent('pointerdown', this);
+				me.state.change(me.state.PLAY);
+			}
+		})));
 	},
-	
 	
 	/**	
 	 *  action to perform when leaving this screen (state change)
