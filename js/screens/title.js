@@ -14,26 +14,37 @@ game.TitleScreen = me.ScreenObject.extend({
 			init: function(){
 				//make a call to our super class
 				//passing a renderable and basic info
+				//changed x, y , width and height
 				this._super(me.Renderable, 'init', [270, 240, 300, 50]);
 				//initialization of text
 				this.font = new me.Font("Arial", 46, "white");
+				//register the pointer to start a new game
 				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true);
 			},
 			//draw whats on the screen 
 			//passing whatever our renderer is as its parameter
 			draw: function(renderer){
 				//coordinates of where we draw
+				//changed the position of start new game
 				this.font.draw(renderer.getContext(), "START A NEW GAME", this.pos.x, this.pos.y);
 			},
+			//listens for the mouse
 			update: function(dt){
 				return true;
 			},
+			//function to start the new game
 			newGame: function(){
+				//calls the pointerdown registered input
 				me.input.releasePointerEvent('pointerdown', this);
+				//removes the past experience points and saves the new one
 				me.save.remove('exp');
+				//removes the past experience points and saves the new one
 				me.save.remove('exp1');
+				//removes the past experience points and saves the new one
 				me.save.remove('exp2');
+				//removes the past experience points and saves the new one
 				me.save.remove('exp3');
+				//removes the past experience points and saves the new one
 				me.save.remove('exp4');
 				me.state.change(me.state.PLAY);
 			}
