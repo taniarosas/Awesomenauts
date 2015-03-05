@@ -7,6 +7,9 @@ game.PlayScreen = me.ScreenObject.extend({
 		game.data.score = 0;
 		//telling what to look at as far as maps
 		me.levelDirector.loadLevel("level01");
+
+		console.log(game.data.exp);
+		console.log(game.data.exp2);
 		//we are going to use 0 & 420 to pass our parameters
 		this.resetPlayer(0, 420);
 		//it is not going to be visible
