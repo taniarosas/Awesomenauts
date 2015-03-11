@@ -80,6 +80,7 @@ var game = {
 		me.pool.register("player", game.PlayerEntity, true);
 		//registered the 2nd player 
 		me.pool.register("Player2", game.Player2, true);
+		me.pool.register("EnemyHero", game.EnemyHero);
 		//registers the playerbase
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
 		//registers the enemy base
