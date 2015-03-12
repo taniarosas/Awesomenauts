@@ -22,7 +22,7 @@ game.GameTimerManager = Object.extend({
 	goldTimerCheck: function(){
 		if(Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)){
 			//adds one gold for a creep kill
-			game.data.gold +=1;
+			game.data.gold += (game.data.exp1 + 1);
 			//keeps track of our gold
 			console.log("Current gold: " + game.data.gold);
 		}
