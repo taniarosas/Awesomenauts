@@ -37,17 +37,17 @@ game.TitleScreen = me.ScreenObject.extend({
 				//calls the pointerdown registered input
 				me.input.releasePointerEvent('pointerdown', this);
 				//removes the past experience points and saves the new one
-				me.save.remove('exp');
+				//me.save.remove('exp');
 				//removes the past experience points and saves the new one
-				me.save.remove('exp1');
+				//me.save.remove('exp1');
 				//removes the past experience points and saves the new one
-				me.save.remove('exp2');
+				//me.save.remove('exp2');
 				//removes the past experience points and saves the new one
-				me.save.remove('exp3');
+				//me.save.remove('exp3');
 				//removes the past experience points and saves the new one
-				me.save.remove('exp4');
-				me.save.add({exp: 0, exp1: 0, exp2: 0, exp3: 0, exp4: 0});
-				me.state.change(me.state.PLAY);
+				//me.save.remove('exp4');
+				//me.save.add({exp: 0, exp1: 0, exp2: 0, exp3: 0, exp4: 0});
+				me.state.change(me.state.NEW);
 			}
 		})));
 
@@ -78,14 +78,14 @@ game.TitleScreen = me.ScreenObject.extend({
 			},
 			//function to start the new game
 			newGame: function(){
-				game.data.exp = me.save.exp;
-				game.data.exp1 = me.save.exp1;
-				game.data.exp2 = me.save.exp2;
-				game.data.exp3 = me.save.exp3;
-				game.data.exp4 = me.save.exp4;
+				//game.data.exp = me.save.exp;
+				//game.data.exp1 = me.save.exp1;
+				//game.data.exp2 = me.save.exp2;
+				//game.data.exp3 = me.save.exp3;
+				//game.data.exp4 = me.save.exp4;
 				//calls the pointerdown registered input
 				me.input.releasePointerEvent('pointerdown', this);
-				me.state.change(me.state.SPENDEXP);
+				me.state.change(me.state.LOAD);
 			}
 		})));
 	},
