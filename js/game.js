@@ -27,6 +27,12 @@ var game = {
 		exp: 0,
 		//acquired during each game that they can use to buy power ups that will disappear
 		gold: 0,
+		ability1: 0,
+		ability2: 0,
+		ability3: 0,
+		skill1: 0,
+		skill2: 0,
+		skill3: 0,
 		//keep track of how they have spent their experience
 		exp1: 0,
 		exp2: 0,
