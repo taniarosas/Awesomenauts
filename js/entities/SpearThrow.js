@@ -1,4 +1,5 @@
 game.SpearThrow = me.Entity.extend ({
+	init: function(x, y, settings, facing) {
 		this._super(me.Entity, 'init', [x, y, {
 			image: "spear",
 			width: 48,
@@ -6,7 +7,7 @@ game.SpearThrow = me.Entity.extend ({
 			spritewidth: "48",
 			spriteheight: "48",
 			getShape: function() {
-				return (new me.Rect(0, 0, 48 48)).toPolygon();
+				return (new me.Rect(0, 0, 48)).toPolygon();
 			}
 		}]);
 		// to always move on screen
@@ -32,8 +33,6 @@ game.SpearThrow = me.Entity.extend ({
 		// this is to update our animation
 		this._super(me.Entity, "update", [delta]);
 		return true;
-	}	
-})
 },
 
 	collideHandler: function(response) {
@@ -42,3 +41,4 @@ game.SpearThrow = me.Entity.extend ({
 				me.game.world.removeChild(this);
 			}
 		}
+		});

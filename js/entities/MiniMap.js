@@ -12,6 +12,4 @@ game.MiniMap = me.Entity.extend({
 		}]);
 		this.floating = true;
 	}
- })
-	
 });

@@ -1,5 +1,5 @@
 game.MiniPlayerLocation = me.Entity.extend({
-	init: function(x, y, settings) {}
+	init: function(x, y, settings) {
 		this.settings = settings;
 		this.r = 5;
 		this.diameter = (this.r+2)*2;
