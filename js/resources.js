@@ -25,7 +25,7 @@ game.resources = [
 	 {name: "gold-screen", type:"image", src: "data/img/spend.png"},
 	 {name: "load-screen", type:"image", src: "data/img/loadpic.png"},
 	 {name: "new-screen", type:"image", src: "data/img/newpic.png"},
-	 {name: "minimap", type:"image", src: "data/img/minimap.png"},
+	 {name: "minimap", type:"image", src: "data/img/miniMap.png"},
 	/* Atlases 
 	 * @example
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
