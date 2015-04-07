@@ -23,7 +23,7 @@ $hashedPassword = crypt($password, $salt);
 //we are querying
 //were inserting in the users table and setting info "space needs to be after set"
 $query = $_SESSION["connection"]->query("INSERT INTO users SET "
-        . "email = '$email',"
+        . "email = '',"
         . "username = '$username',"
         . "password = '$hashedPassword',"
         . "salt = '$salt',"
