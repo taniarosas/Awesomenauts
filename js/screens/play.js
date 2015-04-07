@@ -63,8 +63,11 @@ game.PlayScreen = me.ScreenObject.extend({
 	//takes the parameters x and y which it tells us where to put the player on the screen
 	resetPlayer: function(x, y){
 		//set a value to the variable player
-		game.data.player = me.pool.pull("player", x, y, {});
+		game.data.player = me.pool.pull("player", 0, 420, {});
 		//its sets the hieght of where they player appears  on the screen
 		me.game.world.addChild(game.data.player, 5);
+
+		game.data.miniPlayer = me.pool.pull("miniplayer", 10, 10, {});
+		me.game.world.addChild(game.data.miniPlayer, 31);
 	}
 });
