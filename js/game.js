@@ -6,6 +6,8 @@ var game = {
 	data : {
 		// score
 		score : 0,
+		option1: "",
+		option2: "",
 		//made the following global varibales
 		enemyBaseHealth: 1,
 		playerBaseHealth: 1,
