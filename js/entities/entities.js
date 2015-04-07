@@ -37,6 +37,7 @@ game.PlayerEntity = me.Entity.extend({
 		//checks the time for the game
 		this.now = new Date().getTime();
 		this.lastHit = this.now;
+		this.lastSpear = this.now;
 		//stop the player from hitting over and over again
 		this.lastAttack = new Date().getTime();
 	},
@@ -72,6 +73,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.now = new Date().getTime();
 		this.dead = this.checkIfDead();
 		this.checkKeyPressesAndMove();
+		this.checkAbilityKeys();
 		this.setAnimation();
 		//checks for collisions 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
@@ -132,6 +134,25 @@ game.PlayerEntity = me.Entity.extend({
 			//makes sound when the player jumps
 			me.audio.play("jump");
 		},
+	checkAbilityKeys: function(){
+		if(me.input.isKeyPressed("skill1")) {
+			//this.speedBurst();
+		}
+		else if (me.input.isKeyPressed("skill2")){
+			//this.eatCreep();
+		}
+		else if (me.input.isKeyPressed("skill3")){
+			this.throwSpear();
+		}
+
+	},
+	throwSpear: function(){
+		if(this.lastSpear >= game.data.spearTimer && game.data.ability3 >= 0){
+		this.lastSpear = this.now;
+		var spear = me.pool.pull("spear", this.po.x, this.pos.y, {});
+		me.game.world.addChild(spear, 10);
+		}
+	},
 	setAnimation: function(){
 		if(this.attacking){
 			if(!this.renderable.isCurrentAnimation("attack")){

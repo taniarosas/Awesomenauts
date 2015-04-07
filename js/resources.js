@@ -18,6 +18,8 @@ game.resources = [
 	 {name: "Player2", type:"image", src: "data/img/gloop.png"},
 	 //added the title image to load on the map
 	 {name: "title-screen", type:"image", src: "data/img/title.png"},
+	 {name: "creep3", type:"image", src: "data/img/elf.png"},
++	{name: "spear", type:"image", src: "data/img/spear.png"},
 	 {name: "exp-screen", type:"image", src: "data/img/loadpic.png"},
 	 {name: "hero", type:"image", src: "data/img/skeletonDagger.png"},
 	 {name: "gold-screen", type:"image", src: "data/img/spend.png"},
