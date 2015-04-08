@@ -28,12 +28,17 @@ game.PlayScreen = me.ScreenObject.extend({
 		var spendGold = me.pool.pull("SpendGold", 0, 0, {});
 		me.game.world.addChild(spendGold, 0);
 
+		//the mini map is going to be visible
+		//coordinates for its location
 		game.data.miniMap = me.pool.pull("MiniMap", 10, 10, {});
 		me.game.world.addChild(game.data.miniMap, 30);
-
+		//sets they key B as buy
 		me.input.bindKey(me.input.KEY.B, "buy");
+		//sets the key Q as skill1
 		me.input.bindKey(me.input.KEY.Q, "skill1");
+		//sets the key W as skill 2
 		me.input.bindKey(me.input.KEY.W, "skill2");
+		//sets the key E as skill 3
 		me.input.bindKey(me.input.KEY.E, "skill3");
 		//moves the player to the right once the right arrow is pushed
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
