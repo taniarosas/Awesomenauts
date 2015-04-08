@@ -5,13 +5,19 @@ game.LoadProfile = me.ScreenObject.extend({
 	onResetEvent: function() {
 		//adds and loads the title image	
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('load-screen')), -10); // TODO
+		//makes the input button visible 
 		document.getElementById("input").style.visibility = "visible";
+		//makes the load button visible 
 		document.getElementById("load").style.visibility = "visible";
-
+		//unbinds key B
 		me.input.unbindKey(me.input.KEY.B);
+		//unbinds key Q
 		me.input.unbindKey(me.input.KEY.Q);
+		//unbinds key E
 		me.input.unbindKey(me.input.KEY.E);
+		//unbinds key W
 		me.input.unbindKey(me.input.KEY.W);
+		//unbinds key A
 		me.input.unbindKey(me.input.KEY.A);
 		me.game.world.addChild(new (me.Renderable.extend({
 			init: function(){
@@ -32,7 +38,9 @@ game.LoadProfile = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
+		//hids input button
 		document.getElementById("input").style.visibility = "hidden";
+		//hids load button
 		document.getElementById("load").style.visibility = "hidden";
 		}
 });
