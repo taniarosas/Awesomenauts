@@ -18,13 +18,21 @@ game.resources = [
 	 {name: "Player2", type:"image", src: "data/img/gloop.png"},
 	 //added the title image to load on the map
 	 {name: "title-screen", type:"image", src: "data/img/title.png"},
+	 //added the creep image to load on the map
 	 {name: "creep3", type:"image", src: "data/img/elf.png"},
+	 //added the spear image to load on the map
 	 {name: "spear", type:"image", src: "data/img/spear.png"},
+	 //added the load image to load on the map
 	 {name: "exp-screen", type:"image", src: "data/img/loadpic.png"},
+	 //added the hero image to load on the map
 	 {name: "hero", type:"image", src: "data/img/skeletonDagger.png"},
+	 //added the spend image to load on the map
 	 {name: "gold-screen", type:"image", src: "data/img/spend.png"},
+	 //added the load image to load on the map
 	 {name: "load-screen", type:"image", src: "data/img/loadpic.png"},
+	 //added the new screen image to load on the map
 	 {name: "new-screen", type:"image", src: "data/img/newpic.png"},
+	 //added the mini map image to load on the map
 	 {name: "minimap", type:"image", src: "data/img/miniMap.png"},
 	/* Atlases 
 	 * @example

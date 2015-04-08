@@ -96,6 +96,7 @@ var game = {
 		me.pool.register("player", game.PlayerEntity, true);
 		//registered the 2nd player 
 		me.pool.register("Player2", game.Player2, true);
+		//registers the enemy hero
 		me.pool.register("EnemyHero", game.EnemyHero);
 		//registers the playerbase
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
@@ -107,12 +108,17 @@ var game = {
 		//registers the game manager
 		//only one of them
 		me.pool.register("GameTimerManager", game.GameTimerManager);
+		//registers the hero death maganger
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
+		//registers the experience manager
 		me.pool.register("ExperienceManager", game.ExperienceManager);
+		//registers the spend gold
 		me.pool.register("SpendGold", game.SpendGold);
-		me.pool.register("spear", game.SpearThrow);
+		//registers the spear throw
 		me.pool.register("spear", game.SpearThrow, true);
+		//registers the mini map
 		me.pool.register("minimap", game.MiniMap, true);
+		//registers the mini player location
 		me.pool.register("miniplayer", game.MiniPlayerLocation, true);
 
 		me.state.set(me.state.MENU, new game.TitleScreen());

@@ -1,4 +1,5 @@
 <?php
+	//this looks for config.php
 	require_once(__DIR__ . "/../model/config.php");
 
 	$exp = filter_input (INPUT_POST, "exp", FILTER_SANITIZE_STRING);
@@ -8,6 +9,7 @@
 	$exp4 = filter_input (INPUT_POST, "exp4", FILTER_SANITIZE_STRING);
 
 $query = $_SESSION["connection"]->query("UPDATE users SET "
+	// converts code in my sequal so it can read it
 	. "exp = $exp, "
 	. "exp1 = $exp1, "
 	. "exp2 = $exp2, "
