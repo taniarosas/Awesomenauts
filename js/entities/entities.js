@@ -8,11 +8,14 @@ game.PlayerEntity = me.Entity.extend({
 		this.setFlags();
 		//to call player entity
 		this.type = "PlayerEntity";
+		//no matter what the player screen is going to follow him
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
 		this.addAnimation();
 		//adds animation to non-moving position 
 		this.renderable.setCurrentAnimation("idle");
 	},
+	 //setSuper()
+    //Init Refactor functions
 	setSuper: function(x, y){
 		this._super(me.Entity, 'init', [x, y, {
 			//makes the image of the player appear

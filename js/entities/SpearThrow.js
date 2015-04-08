@@ -25,9 +25,11 @@ game.SpearThrow = me.Entity.extend ({
 	}else {
 		this.body.vel.x += this.body.accel.x * me.timer.tick;
 	}
+		//check for collision, if true activate collideHandler function
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 
 		// update the creep
+		// creep falls to the ground
 		this.body.update(delta);
 
 		// this is to update our animation

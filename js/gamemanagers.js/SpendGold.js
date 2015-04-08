@@ -3,6 +3,7 @@ game.SpendGold = Object.extend({
 		this.now = new Date().getTime();
 		//keep track of the last time we made a creep happen
 		this.lastBuy = new Date().getTime();
+		//pause our game or pause screen
 		this.paused = false;
 		//makes sure it is always updating
 		this.alwaysUpdate = true;

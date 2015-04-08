@@ -15,6 +15,7 @@ game.EnemyBaseEntity = me.Entity.extend({
 				//function of the shape of the screen 
 				getShape: function(){
 					//the position of the enemy base 
+					//lower the base to 70 to make it align with the floor
 					return(new me.Rect(0, 0, 100, 70)).toPolygon();
 				}
 
